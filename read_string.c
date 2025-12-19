@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 void read_string(char ** buf) {
     int c;
     int count = 0;

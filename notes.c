@@ -278,11 +278,19 @@ switch(category) {
 }
 update_data(entry, count, file);
 }
-int main(void) {
+int main(int argc, char *argv[]) {
+    if(argc == 1) return 1;
 	LogEntry * entry = malloc(sizeof(LogEntry));
 	int count = 0;
 	puts("WELCOME TO LOGS");
-	const char * filename = "logs.txt";
+	char *filename = malloc(strlen(argv[1]) + 1);
+    if(!filename) {
+        fprintf(stderr, "Memory allocation failed\n");
+        free_entry(entry, count);
+        return 1;
+    }
+    filename[0] = '\0';
+    strcat(filename, argv[1]);
 	FILE * file = fopen(filename, "r");
 	if(!file) {
 		fprintf(stderr, "Error opening the logs\n");
